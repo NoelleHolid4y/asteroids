@@ -12,7 +12,7 @@ bullets = pygame.sprite.Group()
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 timer = pygame.time.Clock()
-dt = 0 #dt means delta time. NOT deltarune (unless...)
+dt = 0 #delta time (deltarune reference...)
 
 Player.containers = (updatable, drawable)
 Asteroid.containers = (asteroids, updatable, drawable)
@@ -31,7 +31,6 @@ def drawingScreen():
     score = 0.0
     terminalfont = pygame.font.SysFont("Terminal", 25)
     
-
     while True:
         dt = timer.tick(60) / 1000
 
@@ -41,6 +40,7 @@ def drawingScreen():
         for asteroid in asteroids:
             if asteroid.collides(spaceship):
                 print("Game Over!")
+                print("Score: " + str(score))
                 raise SystemExit()
             
             for bullet in bullets:
@@ -61,6 +61,7 @@ def drawingScreen():
 
         for event in pygame.event.get(): #quitting game
             if event.type == pygame.QUIT:
+                print("Score: " + str(score))
                 return
         
 
